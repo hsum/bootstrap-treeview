@@ -305,8 +305,18 @@
 				// Add node icon
 				treeItem
 					.append($(self._template.icon)
-						.addClass(node.icon ? node.icon : self.options.nodeIcon)
+						.addClass(node.icon ? node.icon : (node.img ? '' :self.options.nodeIcon))
 					);
+
+				// Add node img
+				if (self.options.enableImages) {
+                    treeItem
+                        .append($(self._template.img)
+                            .attr('src', node.img)
+                            .addClass('icon')
+                        );
+                }
+
 
 				// Add text
 				if (self.options.enableLinks) {
@@ -407,11 +417,12 @@
 			indent: '<span class="indent"></span>',
 			expandCollapseIcon: '<span class="expand-collapse"></span>',
 			icon: '<span class="icon"></span>',
+			img: '<img />',
 			link: '<a href="#" style="color:inherit;"></a>',
 			badge: '<span class="badge"></span>'
 		},
 
-		_css: '.treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.expand-collapse{width:1rem;height:1rem}.treeview span.icon{margin-left:10px;margin-right:5px}'
+		_css: '.treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.expand-collapse{width:1rem;height:1rem}.treeview span.icon,img.icon{margin-left:10px;margin-right:5px}'
 		// _css: '.list-group-item{cursor:pointer;}.list-group-item:hover{background-color:#f5f5f5;}span.indent{margin-left:10px;margin-right:10px}span.icon{margin-right:5px}'
 
 	};
